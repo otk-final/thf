@@ -51,11 +51,25 @@ func NewError[T any](err error) *Entry[T] {
 	return rs
 }
 
+func NewErrors[T any](errs string) *Entry[T] {
+	rs := &Entry[T]{}
+	rs.Code = entryERR
+	rs.Error = errs
+	return rs
+}
+
 func NewFail[T any](code string, err error) *Entry[T] {
 	rs := &Entry[T]{}
 	rs.Code = code
 	if err != nil {
 		rs.Error = err.Error()
 	}
+	return rs
+}
+
+func NewFails[T any](code string, errs string) *Entry[T] {
+	rs := &Entry[T]{}
+	rs.Code = code
+	rs.Error = errs
 	return rs
 }
